@@ -1,13 +1,11 @@
-local responses = require "kong.tools.responses"
 ngx.ctx.max_chunk_size = tonumber(ngx.var.max_chunk_size)
 ngx.ctx.max_body_size = tonumber(ngx.var.max_body_size)
 
 function create_error_response (code, description)
     ngx.status = ngx.HTTP_BAD_REQUEST
     ngx.header.content_type = "application/json"
-    responses.send_HTTP_OK()
 
-    responses.send(code, { message = description })
+    kong.response.exit(code, { message = description })
 end
 
 function inflate_chunk (stream, chunk)
