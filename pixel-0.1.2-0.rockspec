@@ -4,7 +4,7 @@ source = {
   url = "https://github.com/sakari-ai/kong-plugins.git"
 }
 description = {
-  summary = "A Kong plugin that sets different upstream URLs based on API and Consumer",
+  summary = "A Kong plugin that support Gzip-Compression via Content-Encoding",
   license = "Apache 2.0"
 }
 dependencies = {
@@ -13,8 +13,8 @@ dependencies = {
 build = {
   type = "builtin",
   modules = {
-    ["kong.plugins.grabid.handler"] = "kong/plugins/pixel/handler.lua",
-    ["kong.plugins.grabid.client"] = "kong/plugins/pixel/schema.lua",
-    ["kong.plugins.grabid.hmac"] = "kong/plugins/pixel/gzip.lua"
+    ["kong.plugins.pixel.handler"] = "kong/plugins/pixel/handler.lua",
+    ["kong.plugins.pixel.schema"] = "kong/plugins/pixel/schema.lua",
+    ["kong.plugins.pixel.gzip"] = "kong/plugins/pixel/gzip.lua"
   }
 }
