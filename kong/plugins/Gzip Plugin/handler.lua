@@ -1,5 +1,5 @@
 local BasePlugin = require "kong.plugins.base_plugin"
-local gzip = require "kong.plugins.pixel.gzip"
+local gzip = require "kong.plugins.gzip.gzip"
 
 local GZIPHandler = BasePlugin:extend()
 GZIPHandler.PRIORITY = 2100
@@ -8,7 +8,7 @@ GZIPHandler.VERSION = "0.1.0"
 GZIPHandler.ERRORS = ERRORS
 
 function GZIPHandler:new()
-    GZIPHandler.super.new(self, "pixel")
+    GZIPHandler.super.new(self, "gzip")
 end
 
 function GZIPHandler:access(conf)
