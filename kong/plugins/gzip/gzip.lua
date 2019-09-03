@@ -1,15 +1,17 @@
-function create_error_response (code, description)
+local function create_error_response (code, description)
     ngx.status = ngx.HTTP_BAD_REQUEST
     ngx.header.content_type = "application/json"
 
     kong.response.exit(code, { message = description })
 end
 
-function inflate_chunk (stream, chunk)
+local function inflate_chunk(stream, chunk)
     return stream(chunk)
 end
 
-function inflate_body (data)
+local _Gzip = {}
+
+function _Gzip.inflate_body(data)
     local stream = require("zlib").inflate()
     local buffer = ""
     local chunk = ""
@@ -39,3 +41,5 @@ function inflate_body (data)
 
     return buffer
 end
+
+return _Gzip
