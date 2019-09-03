@@ -1,4 +1,4 @@
-package = "pixel"
+package = "gzip"
 version = "0.1.2-0"
 source = {
   url = "https://github.com/sakari-ai/kong-plugins.git"
@@ -13,8 +13,8 @@ dependencies = {
 build = {
   type = "builtin",
   modules = {
-    ["kong.plugins.pixel.handler"] = "kong/plugins/pixel/handler.lua",
-    ["kong.plugins.pixel.schema"] = "kong/plugins/pixel/schema.lua",
-    ["kong.plugins.pixel.gzip"] = "kong/plugins/pixel/gzip.lua"
+    ["kong.plugins.gzip.handler"] = "kong/plugins/gzip/handler.lua",
+    ["kong.plugins.gzip.schema"] = "kong/plugins/gzip/schema.lua",
+    ["kong.plugins.gzip.gzip"] = "kong/plugins/gzip/gzip.lua"
   }
 }
