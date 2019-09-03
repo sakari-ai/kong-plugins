@@ -5,13 +5,11 @@ local function create_error_response (code, description)
     kong.response.exit(code, { message = description })
 end
 
-local function inflate_chunk(stream, chunk)
-    return stream(chunk)
-end
-
 local _Gzip = {}
 
 function _Gzip.inflate_body(data)
+    ngx.ctx.max_chunk_size = tonumber(ngx.var.max_chunk_size)
+    ngx.ctx.max_body_size = tonumber(ngx.var.max_body_size)
     local stream = require("zlib").inflate()
     local buffer = ""
     local chunk = ""
