@@ -8,8 +8,8 @@ end
 local _Gzip = {}
 
 function _Gzip.inflate_body(data)
-    ngx.ctx.max_chunk_size = tonumber(ngx.var.max_chunk_size)
-    ngx.ctx.max_body_size = tonumber(ngx.var.max_body_size)
+    ngx.ctx.max_chunk_size = 16384 -- 16Kb
+    ngx.ctx.max_body_size = 20971520 -- 20Mb
     local stream = require("zlib").inflate()
     local buffer = ""
     local chunk = ""
@@ -19,8 +19,6 @@ function _Gzip.inflate_body(data)
         local status, output, eof, bytes_in, bytes_out = pcall(stream, chunk)
 
         if not status then
-            -- corrupted chunk
-            ngx.log(ngx.ERR, output)
             create_error_response(4001, "Corrupted GZIP body")
         end
 
