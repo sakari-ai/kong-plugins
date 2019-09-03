@@ -20,9 +20,9 @@ function GZIPHandler:access(conf)
         if data ~= '' then
             local new_data = gzip.inflate_body(data)
 
-            ngx.req.clear_header("Content-Encoding")
-            ngx.req.clear_header("Content-Length")
-            ngx.req.set_body_data(new_data)
+            kong.service.request.clear_header("Content-Encoding")
+            kong.service.request.clear_header("Content-Length")
+            kong.service.request.set_raw_body(new_data)
         end
     end
 end
